@@ -1,0 +1,739 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DanilovSoft.ThreadLooper</name>
+    </assembly>
+    <members>
+        <member name="T:DanilovSoft.ThreadLooper.BaseLooper">
+            <summary>
+            Очередь последовательно выполняющая делегаты.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.BaseLooper.OnCancel">
+            <summary>
+            Колбэк для потокобезопасного удаления сообщения из очереди диспетчера.
+            Предварительно у сообщения должно быть вызвано Cancel
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.TryAdd(DanilovSoft.ThreadLooper.BaseMessage)">
+            <summary>
+            Добавляет сообщение в очередь на обработку. Возвращает False если очередь была остановлена.
+            </summary>
+            <param name="msg">Сообщение содержащее делегат для выполнения внутри очереди.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.MillisecondsTimeoutFromTimeSpan(System.TimeSpan)">
+            <summary>
+            Возвращает время в миллисекундах валидируя допустимый диаппазон.
+            </summary>
+            <param name="timeout"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+            <returns></returns>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Post(System.Action)">
+            <summary>
+            Планирует выполнение метода.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Post(System.Action{System.Object},System.Object)">
+            <summary>
+            Планирует выполнение метода, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.PostTask(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Планирует выполнение асинхронного метода.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.PostTask(System.Func{System.Object,System.Threading.Tasks.Task},System.Object)">
+            <summary>
+            Планирует выполнение асинхронного метода, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action)">
+            <summary>
+            Синхронно выполняет метод.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action,System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет метод.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+            <returns><see langword="true"/> если метод выполнен. Если диспетчер остановлен — возвращает <see langword="false"/>.</returns>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action,System.Int32)">
+            <summary>
+            Синхронно выполняет метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action,System.TimeSpan)">
+            <summary>
+            Синхронно выполняет метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action{System.Object},System.Object)">
+            <summary>
+            Синхронно выполняет метод, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action{System.Object},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action{System.Object},System.Object,System.Int32)">
+            <summary>
+            Синхронно выполняет метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.Send(System.Action{System.Object},System.Object,System.TimeSpan)">
+            <summary>
+            Синхронно выполняет метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Синхронно выполняет асинхронный метод.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Threading.Tasks.Task},System.Int32)">
+            <summary>
+            Синхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Threading.Tasks.Task},System.TimeSpan)">
+            <summary>
+            Синхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Object,System.Threading.Tasks.Task},System.Object)">
+            <summary>
+            Синхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.Int32)">
+            <summary>
+            Синхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTask(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.TimeSpan)">
+            <summary>
+            Синхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action)">
+            <summary>
+            Асинхронно выполняет синхронный метод.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action,System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет синхронный метод.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action,System.Int32)">
+            <summary>
+            Асинхронно выполняет синхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action,System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет синхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action{System.Object},System.Object)">
+            <summary>
+            Асинхронно выполняет синхронный метод, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action{System.Object},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет синхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action{System.Object},System.Object,System.Int32)">
+            <summary>
+            Асинхронно выполняет синхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendAsync(System.Action{System.Object},System.Object,System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет синхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Асинхронно выполняет асинхронный метод.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Threading.Tasks.Task},System.Int32)">
+            <summary>
+            Асинхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Threading.Tasks.Task},System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет асинхронный метод.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Object,System.Threading.Tasks.Task},System.Object)">
+            <summary>
+            Асинхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.Int32)">
+            <summary>
+            Асинхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskAsync(System.Func{System.Object,System.Threading.Tasks.Task},System.Object,System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет асинхронный метод, который принимает один параметр.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{``0})">
+            <summary>
+            Синхронно выполняет функцию и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{``0},System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{``0},System.Int32)">
+            <summary>
+            Синхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{``0},System.TimeSpan)">
+            <summary>
+            Синхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{System.Object,``0},System.Object)">
+            <summary>
+            Синхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{System.Object,``0},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{System.Object,``0},System.Object,System.Int32)">
+            <summary>
+            Синхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResult``1(System.Func{System.Object,``0},System.Object,System.TimeSpan)">
+            <summary>
+            Синхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Синхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)">
+            <summary>
+            Синхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Threading.Tasks.Task{``0}},System.TimeSpan)">
+            <summary>
+            Синхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object)">
+            <summary>
+            Синхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Синхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.Int32)">
+            <summary>
+            Синхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResult``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.TimeSpan)">
+            <summary>
+            Синхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{``0})">
+            <summary>
+            Асинхронно выполняет функцию и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{``0},System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{``0},System.Int32)">
+            <summary>
+            Асинхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{``0},System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{System.Object,``0},System.Object)">
+            <summary>
+            Асинхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{System.Object,``0},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{System.Object,``0},System.Object,System.Int32)">
+            <summary>
+            Асинхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendWithResultAsync``1(System.Func{System.Object,``0},System.Object,System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Асинхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Int32)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.Int32)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseLooper.SendTaskWithResultAsync``1(System.Func{System.Object,System.Threading.Tasks.Task{``0}},System.Object,System.TimeSpan)">
+            <summary>
+            Асинхронно выполняет асинхронную функцию, которая принимает один параметр, и возвращает её результат.
+            </summary>
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.BaseMessage">
+            <summary>
+            Сообщение-делегат подготовленное для выполнение в очереди диспетчера.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.BaseMessage.WaitingResult">
+            <summary>
+            <see langword="true"/> если другой поток ожидает результат обработки текущего сообщения.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.#ctor(System.Object,System.Object,System.Boolean)">
+            <summary>
+            Без поддержки отмены.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.#ctor(System.Object,System.Object,System.Boolean,System.Action{DanilovSoft.ThreadLooper.BaseMessage})">
+            <summary>
+            С поддержкой отмены.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.SetResult(System.Boolean,System.Object)">
+            <summary>
+            Устанавливает результат обработки сообщения.
+            </summary>
+            <param name="success">True если делегат был обработан очередью.</param>
+            <param name="result">Результат выполнения делегата.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.SetException(System.Exception)">
+            <summary>
+            Устанавливает исключение как результат обработки текущего сообщения.
+            Должно вызываться из потока отличного от инициализатора сообщения.
+            </summary>
+            <param name="exception">Исключение которое будет результатом текущей задачи.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.TryCancel">
+            <summary>
+            Атомарно пытается забрать права на этот объект.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.BaseMessage.TryRemove">
+            <summary>
+            Атомарно пытается отменить текущее сообщение и удаляет его из очереди.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.AutoResetEventSlim">
+            <summary>
+            Уведомляет ожидающий поток о поступившем событии.
+            Только один поток может делать <see langword="await"/>. Выполнять Release можно из разных потоков.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AutoResetEventSlim.Release">
+            <summary>
+            Потокобезопасно устанавливает сигнальное состояние, позволяя ожидающему потоку продолжить выполнение.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.MonitorCompletionSource`1">
+            <summary>
+            Позволяет синхронно подождать результат. Синхронизация работает на основе <see cref="T:System.Threading.Monitor"/>.
+            Для этого класса нельзя делать <see langword="lock"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.MonitorCompletionSource`1.WaitResult(DanilovSoft.ThreadLooper.BaseMessage,System.Int32)">
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.MonitorCompletionSource`1.MonitorCompletionResult.GetResult">
+            <summary>
+            Возвращает результат или генерирует исключение.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.ResultAwaiter">
+            <summary>
+            Асинхронно ожидает результат от другого потока.
+            Продолжение всегда осуществляется потоком из пула потоков.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.ResultAwaiter._isCompleted">
+            <summary>
+            Флаг используется как fast-path
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.TaskCompletionSourceEx`1">
+            <summary>
+            Обвертка для <see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.TaskCompletionSourceEx`1.WaitResultAsync">
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.TaskCompletionSourceEx`1.WaitResultAsync(DanilovSoft.ThreadLooper.BaseMessage,System.Int32)">
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.Looper">
+            <summary>
+            Очередь последовательно выполняющая делегаты используя выделенный пользователем поток.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.Looper._queue">
+            <summary>
+            Доступ осуществляется через блокировку <see cref="F:DanilovSoft.ThreadLooper.Looper._queue"/>.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.Looper._mreSlim">
+            <summary>
+            Установка Reset и Set осуществляется через блокировку <see cref="F:DanilovSoft.ThreadLooper.Looper._queue"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.Looper.Loop">
+            <summary>
+            Потокобезопасно запускает обработку поступающих сообщений.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.Looper.TryAdd(DanilovSoft.ThreadLooper.BaseMessage)">
+            <summary>
+            Возвращает <see langword="false"/> если диспетчер уже остановлен.
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.LooperSlim">
+            <summary>
+            Очередь последовательно выполняющая делегаты используя пул потоков.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.LooperSlim._canContinueObj">
+            <summary>
+            Контролирует доступ к флагам <see cref="F:DanilovSoft.ThreadLooper.LooperSlim._quitUnsafe"/> и <see cref="F:DanilovSoft.ThreadLooper.LooperSlim._canContinue"/>.
+            Блокировка этого объекта позволяет остановить обработку сообщений и с помощью флагов завершить его работу.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.LooperSlim._canContinue">
+            <summary>
+            Если False то диспетчер прекращает обрабатывать сообщения и завершается.
+            Доступ осуществляется через блокировку <see cref="F:DanilovSoft.ThreadLooper.LooperSlim._canContinueObj"/>.
+            </summary>
+        </member>
+        <member name="F:DanilovSoft.ThreadLooper.LooperSlim._quitUnsafe">
+            <summary>
+            Если False то после завершения диспетчера будут обработаны сообщения которые остались в очереди.
+            Доступ осуществляется через блокировку <see cref="F:DanilovSoft.ThreadLooper.LooperSlim._canContinueObj"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.#ctor">
+            <summary>
+            Очередь последовательно выполняющая делегаты используя пул потоков.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.#ctor(System.Boolean)">
+            <param name="autoStart">True что-бы сразу начать обрабатывать поступающие сообщения. Значение по умолчанию True.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.StartLooper">
+            <summary>
+            Потокобезопасно запускает обработку поступающих сообщений.
+            </summary>
+            <exception cref="T:System.InvalidOperationException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.InnerLoopAsync">
+            <summary>
+            True если нужно завершить обработку оставшихся сообщений.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.TryAdd(DanilovSoft.ThreadLooper.BaseMessage)">
+            <summary>
+            Потокобезопасно добавляет сообщение в очередь на обработку диспетчером.
+            </summary>
+            <param name="msg">Сообщение.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.ReleaseSemaphore">
+            <summary>
+            Вызывается только после того как данные гарантированно добавлены в очередь <see cref="F:DanilovSoft.ThreadLooper.LooperSlim._queue"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.TryAddQuitSafely(DanilovSoft.ThreadLooper.AsyncMessageNoResult@)">
+            <summary>
+            Останавливает диспетчер и возвращает сообщение которое будет обработано последним, 
+            оно позволяет дождаться завершения обработки сообщений оставшихся в очереди.
+            </summary>
+            <param name="lastMessage">Сообщение которое будет обработано последним.</param>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.Quit">
+            <summary>
+            Потокобезопасно останавливает диспетчер не обрабатывая сообщения которые могли остаться в очереди.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.QuitSafely">
+            <summary>
+            Потокобезопасно останавливает диспетчер обязывая его обработать оставшиеся в очереди сообщения.
+            Функция не дожидается завершения обработки оставшихся сообщений.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.QuitAsync">
+            <summary>
+            Останавливает диспетчер не обрабатывая сообщения которые могли остаться в очереди.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.QuitSafelyAsync">
+            <summary>
+            Останавливает диспетчер и обрабатывает оставшиеся в очереди сообщения.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.LooperSlim.RemoveMessage(DanilovSoft.ThreadLooper.BaseMessage)">
+            <summary>
+            Колбэк удаляющий сообщения из очереди в результате отмены.
+            </summary>
+            <param name="msg">Сообщение необходимое удалить.</param>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.MessageCancelHandler">
+            <summary>
+            Атомарно удаляет сообщение из очереди когда срабатывает токен отмены.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.MessageCancelHandler.#ctor(DanilovSoft.ThreadLooper.BaseMessage,System.Threading.CancellationToken)">
+            <summary>
+            Атомарно удаляет сообщение <paramref name="msg"/> из очереди когда срабатывает токен отмены.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.AsyncCancelableMessage`1">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно. Поддерживает отмену.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AsyncCancelableMessage`1.#ctor(System.Object,System.Object,System.Action{DanilovSoft.ThreadLooper.BaseMessage})">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно. Поддерживает отмену.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.AsyncCancelableMessage">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно. Поддерживает отмену.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AsyncCancelableMessage.#ctor(System.Object,System.Object,System.Action{DanilovSoft.ThreadLooper.BaseMessage})">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно. Поддерживает отмену.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AsyncCancelableMessage.GetResultAsync(System.Threading.CancellationToken)">
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AsyncCancelableMessage.GetResultAsync(System.Int32)">
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.AsyncMessage`1">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.AsyncMessageNoResult">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.AsyncMessageNoResult.#ctor(System.Object,System.Object)">
+            <summary>
+            Хранит делегат результат которого можно получить только асинхронно.
+            </summary>
+            <param name="action">Делегат.</param>
+            <param name="state">Параметр который будет передан делегату.</param>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SendCancelableMessage`1">
+            <summary>
+            Позволяет синхронно подождать результат. Синхронизация работает на основе <see cref="T:System.Threading.Monitor"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.SendCancelableMessage`1.WaitResult(System.Threading.CancellationToken)">
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.SendCancelableMessage`1.WaitResult(System.Int32)">
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SendCancelableMessage">
+            <summary>
+            Позволяет синхронно подождать результат. Синхронизация работает на основе <see cref="T:System.Threading.Monitor"/>.
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.SendCancelableMessage.WaitResult(System.Threading.CancellationToken)">
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.SendCancelableMessage.WaitResult(System.Int32)">
+            <exception cref="T:System.TimeoutException"/>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SendMessage`1">
+            <summary>
+            Хранит делегат результат которого можно получить только синхронно. Для синхронизации используется <see cref="T:System.Threading.Monitor"/>
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SendMessage">
+            <summary>
+            Хранит делегат результат которого можно получить только синхронно. Для синхронизации используется <see cref="T:System.Threading.Monitor"/>
+            </summary>
+        </member>
+        <member name="M:DanilovSoft.ThreadLooper.SendMessage.#ctor(System.Object,System.Object)">
+            <summary>
+            Хранит делегат результат которого можно получить только синхронно. Для синхронизации используется <see cref="T:System.Threading.Monitor"/>
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SendResult`1">
+            <summary>
+            Результат выполнения делегата.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:DanilovSoft.ThreadLooper.SendResult`1.Result">
+            <summary>
+            Результат выполнения делегата.
+            </summary>
+        </member>
+        <member name="P:DanilovSoft.ThreadLooper.SendResult`1.Success">
+            <summary>
+            <see langword="true"/> если делегат был выполнен.
+            </summary>
+        </member>
+        <member name="T:DanilovSoft.ThreadLooper.SpecialQueue`1">
+            <summary>
+            Очередь типа LIFO с поддержкой удаления элементов.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Danilovsoft.ObjectPool</name>
+    </assembly>
+    <members>
+        <member name="M:Danilovsoft.ObjectPool.ManualResetMonitor.Wait(System.Threading.CancellationToken)">
+            <exception cref="T:System.OperationCanceledException"/>
+        </member>
+        <member name="M:Danilovsoft.ObjectPool.PoolSlot`1.Dispose">
+            <summary>
+            Потокобезопасно возвращает объект в пул.
+            </summary>
+        </member>
+        <member name="T:System.Threading.DelayedAction">
+            <summary>
+            Планирует отложенный запуск задачи. Открытые члены класса являются потокобезопасными
+            </summary>
+        </member>
+        <member name="M:System.Threading.DelayedAction.#ctor(System.TimeSpan,System.Action)">
+            <summary>
+            Планирует отложенный запуск задачи. Открытые члены класса являются потокобезопасными
+            </summary>
+            <exception cref="T:System.ArgumentNullException"/>
+            <exception cref="T:System.ArgumentOutOfRangeException"/>
+        </member>
+        <member name="M:System.Threading.DelayedAction.TryCancel(System.Boolean)">
+            <summary>
+            Пытается отменить запланированную задачу
+            </summary>
+            <returns>True если удалось отменить запланированную задачу</returns>
+            <param name="wait">True если нужно дожидаться завершения задачи</param>
+        </member>
+    </members>
+</doc>
